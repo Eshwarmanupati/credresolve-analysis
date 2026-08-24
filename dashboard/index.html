@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credresolve Collections Analytics — Executive Dashboard</title>
+    <meta name="description" content="Executive dashboard for Credresolve collections recovery analysis - investigating the reported 11% MoM improvement claim">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h1>Credresolve Collections Analytics</h1>
+                <p class="subtitle">Recovery Performance Investigation — Independent Analysis (Jan 2026 – Jul 2026)</p>
+            </div>
+            <div class="header-right">
+                <div class="header-badge caution">⚠ 11% Claim: <strong>NOT SUPPORTED</strong></div>
+                <div class="header-meta">Jan 2026 – Jul 2026 (7 Months) | Golden Dataset</div>
+            </div>
+        </header>
+
+        <!-- KPI Row -->
+        <section class="kpi-row" id="kpi-section">
+            <div class="kpi-card negative">
+                <div class="kpi-label">Reported Recovery (Raw)</div>
+                <div class="kpi-value">₹134.15 Cr</div>
+                <div class="kpi-sub inflated">⚠ Includes 14.3% duplicate inflation</div>
+            </div>
+            <div class="kpi-card highlight">
+                <div class="kpi-label">Actual Recovery (Golden)</div>
+                <div class="kpi-value">₹114.96 Cr</div>
+                <div class="kpi-sub">After deduplication — ₹19.19 Cr less</div>
+            </div>
+            <div class="kpi-card negative">
+                <div class="kpi-label">MoM Trend (Actual)</div>
+                <div class="kpi-value decline">↓ Declining</div>
+                <div class="kpi-sub">Recovery rate: 40.1% → 34.4% → 32.5%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Recovery Rate (Latest)</div>
+                <div class="kpi-value">32.5%</div>
+                <div class="kpi-sub">vs 40.1% in Jan (−7.6 pp)</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">₹ Per Account</div>
+                <div class="kpi-value">₹25,948</div>
+                <div class="kpi-sub">Down from ₹31,503 in Jan</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Contact Rate</div>
+                <div class="kpi-value">37.3%</div>
+                <div class="kpi-sub">Unique accounts contacted / targeted (Call Answer Rate = 19.9% of call attempts)</div>
+            </div>
+        </section>
+
+        <!-- Main charts row -->
+        <section class="charts-row">
+            <!-- 12-month recovery trend -->
+            <div class="chart-card wide" id="recovery-trend">
+                <h3>Monthly Recovery Trend — Reported vs Actual</h3>
+                <div class="chart-container">
+                    <canvas id="recoveryTrendChart"></canvas>
+                </div>
+                <div class="chart-insight">
+                    <span class="tag critical">KEY FINDING</span>
+                    Raw data shows flat/improving trend due to growing duplicate inflation (5.8% → 30.3%). 
+                    Actual recovery is <strong>declining overall, despite a small June rebound</strong>.
+                </div>
+            </div>
+
+            <!-- Recovery funnel -->
+            <div class="chart-card" id="funnel-section">
+                <h3>Recovery Funnel (Monthly Avg)</h3>
+                <div class="funnel">
+                    <div class="funnel-stage" style="--width: 100%">
+                        <div class="funnel-bar"></div>
+                        <span class="funnel-label">Targeted</span>
+                        <span class="funnel-value">5,589 unique accounts/mo</span>
+                    </div>
+                    <div class="funnel-stage" style="--width: 72%">
+                        <div class="funnel-bar"></div>
+                        <span class="funnel-label">Call Attempts</span>
+                        <span class="funnel-value">~12,800 attempts/mo</span>
+                    </div>
+                    <div class="funnel-stage" style="--width: 42%">
+                        <div class="funnel-bar"></div>
+                        <span class="funnel-label">Contacted</span>
+                        <span class="funnel-value">2,340 unique accounts/mo</span>
+                    </div>
+                    <div class="funnel-stage" style="--width: 25%">
+                        <div class="funnel-bar"></div>
+                        <span class="funnel-label">PTP Made</span>
+                        <span class="funnel-value">~2,100 unique accounts/mo</span>
+                    </div>
+                    <div class="funnel-stage" style="--width: 18%">
+                        <div class="funnel-bar"></div>
+                        <span class="funnel-label">Recovered</span>
+                        <span class="funnel-value">~1,800 unique accounts/mo</span>
+                    </div>
+                </div>
+                <div class="chart-insight">
+                    <span class="tag warning">BOTTLENECK</span>
+                    Call Answer Rate = 19.9% (answered call attempts / total call attempts). 80.1% of attempts don't connect.
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom row -->
+        <section class="bottom-row">
+            <!-- Top Drivers -->
+            <div class="chart-card" id="drivers-section">
+                <h3>Top Performance Drivers</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Driver</th><th>Finding</th><th>Confidence</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Payment Duplicates</td>
+                            <td>14.3% inflation, growing monthly</td>
+                            <td><span class="tag fact">FACT</span></td>
+                        </tr>
+                        <tr>
+                            <td>Portfolio Mix</td>
+                            <td>Minimal shift (&lt; 0.5 pp)</td>
+                            <td><span class="tag fact">FACT</span></td>
+                        </tr>
+                        <tr>
+                            <td>Strategy Change</td>
+                            <td>-0.06 pp (CI includes 0)</td>
+                            <td><span class="tag hypothesis">HYPOTHESIS</span></td>
+                        </tr>
+                        <tr>
+                            <td>Targeting Population</td>
+                            <td>~80% accounts churn monthly</td>
+                            <td><span class="tag strong-evidence">STRONG EVIDENCE</span></td>
+                        </tr>
+                        <tr>
+                            <td>Mix-Adjusted Trend</td>
+                            <td>-5.34% within every segment</td>
+                            <td><span class="tag fact">FACT</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Channel Performance -->
+            <div class="chart-card" id="channel-section">
+                <h3>Channel Conversion (Reconstructed Last-Touch)</h3>
+                <div class="channel-bars">
+                    <div class="channel-bar">
+                        <span class="channel-name">Calls</span>
+                        <div class="bar-container">
+                            <div class="bar" style="width: 41%" data-value="41%"></div>
+                        </div>
+                        <span class="channel-pct">41% of recoveries</span>
+                    </div>
+                    <div class="channel-bar">
+                        <span class="channel-name">WhatsApp</span>
+                        <div class="bar-container">
+                            <div class="bar wa" style="width: 16%" data-value="16%"></div>
+                        </div>
+                        <span class="channel-pct">16%</span>
+                    </div>
+                    <div class="channel-bar">
+                        <span class="channel-name">SMS</span>
+                        <div class="bar-container">
+                            <div class="bar sms" style="width: 13%" data-value="13%"></div>
+                        </div>
+                        <span class="channel-pct">13%</span>
+                    </div>
+                    <div class="channel-bar">
+                        <span class="channel-name">Field</span>
+                        <div class="bar-container">
+                            <div class="bar field" style="width: 12%" data-value="12%"></div>
+                        </div>
+                        <span class="channel-pct">12%</span>
+                    </div>
+                    <div class="channel-bar">
+                        <span class="channel-name">Unattributed</span>
+                        <div class="bar-container">
+                            <div class="bar unattr" style="width: 18%" data-value="18%"></div>
+                        </div>
+                        <span class="channel-pct">18%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Quality Warning -->
+            <div class="chart-card alert-card" id="dq-section">
+                <h3>⚠ Data Quality Warnings</h3>
+                <div class="alert-list">
+                    <div class="alert-item critical">
+                        <span class="alert-severity">CRITICAL</span>
+                        <span>3,745 duplicate payment references → ₹19.19 Cr inflation</span>
+                    </div>
+                    <div class="alert-item high">
+                        <span class="alert-severity">HIGH</span>
+                        <span>Agent identity: 30K rows → 1K agents (30x fragmentation)</span>
+                    </div>
+                    <div class="alert-item high">
+                        <span class="alert-severity">HIGH</span>
+                        <span>Mixed timezones (UTC/IST/Dubai) across all event tables</span>
+                    </div>
+                    <div class="alert-item high">
+                        <span class="alert-severity">HIGH</span>
+                        <span>No direct payment-channel attribution; reconstructed using 7-day last-touch lookback</span>
+                    </div>
+                    <div class="alert-item medium">
+                        <span class="alert-severity">MEDIUM</span>
+                        <span>48% of status history events recorded &gt;1h late</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investment Recommendation -->
+            <div class="chart-card recommendation-card" id="investment-section">
+                <h3>₹10 Cr Investment Recommendation</h3>
+                <div class="recommendation">
+                    <div class="rec-header">
+                        <span class="rec-pick">RECOMMENDED</span>
+                        <h4>Option 2: More Collection Agents</h4>
+                    </div>
+                    <div class="rec-details">
+                        <div class="rec-metric">
+                            <span class="rec-label">Incremental Recovery</span>
+                            <span class="rec-value">₹29.50 Cr</span>
+                        </div>
+                        <div class="rec-metric">
+                            <span class="rec-label">ROI</span>
+                            <span class="rec-value">2.95x</span>
+                        </div>
+                        <div class="rec-metric">
+                            <span class="rec-label">New Agents</span>
+                            <span class="rec-value">238</span>
+                        </div>
+                        <div class="rec-metric">
+                            <span class="rec-label">Break-even</span>
+                            <span class="rec-value">~4.1 months</span>
+                        </div>
+                    </div>
+                    <div class="rec-range">
+                        <div class="range-bar">
+                            <div class="range-fill" style="left: 15%; width: 50%"></div>
+                            <div class="range-marker" style="left: 35%"></div>
+                        </div>
+                        <div class="range-labels">
+                            <span>Downside: ₹15.88 Cr (1.59x)</span>
+                            <span>Base: ₹29.50 Cr (2.95x)</span>
+                            <span>Upside: ₹36.31 Cr (3.63x)</span>
+                        </div>
+                    </div>
+                    <p class="rec-caveat">
+                        Option 2 provides the strongest evidence-supported ROI among the evaluated options, but the financial estimate has low confidence because it depends on cost and productivity assumptions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="dashboard-footer">
+            <p>The supplied dataset covers seven months (Jan–Jul 2026), so this analysis is limited to the available period. 
+            All metrics independently reconstructed on golden dataset (639,185 raw business records → 585,963 Golden records). 
+            <br>Confidence level: <strong>HIGH</strong> for data quality findings, 
+            <strong>MEDIUM</strong> for driver attribution, 
+            <strong>LOW</strong> for investment ROI estimates (dependent on operational assumptions).</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

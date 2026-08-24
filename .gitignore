@@ -1,0 +1,19 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+*.DS_Store
+
+# Python Cache & Bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Temporary Files & Large Archives
+zi4X3cKo
+*.zip
+*.tar.gz
+*.tmp
+
+# Duplicate Nested Submission Folder
+credresolve-collections-analytics/
